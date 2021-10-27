@@ -26,32 +26,20 @@ import {
   IonTextarea,
 } from "@ionic/react";
 export const Home = () => {
-  const [myArray, updateMyArray] = useState<Product[]>([
-    {
-      code: "code1",
-      name: "name1",
-      type: "meter",
-      availability: true,
-      needing_repair: true,
-      durability: 10,
-      max_durability: 10,
-      mileage: 10,
-      price: 10,
-      minimum_rent_period: 10,
-    },
-    {
-      code: "code2",
-      name: "name2",
-      type: "plain",
-      availability: true,
-      needing_repair: true,
-      durability: 10,
-      max_durability: 10,
-      mileage: 10,
-      price: 10,
-      minimum_rent_period: 10,
-    },
-  ]);
+  const [myArray, updateMyArray] = useState<Product[]>([]);
+  useEffect(()=>{
+    let temp:Product[]=[];
+    jsonData.forEach((data)=>{
+      let pro:Product=data as Product;
+      if(pro.mileage==null)pro.mileage=0;
+      if(pro.minimum_rent_period==null)pro.minimum_rent_period=0;
+      if(pro.durability==null)pro.durability=0;
+      if(pro.max_durability==null)pro.max_durability=0;
+      if(pro.price==null)pro.price=0;
+      temp.push(pro);      
+    })
+    updateMyArray([...temp]);
+  },[]);
   const updateForBook = (product: Product, dayCount: number) => {
     product.availability = false;
     let updateArray = [...myArray];

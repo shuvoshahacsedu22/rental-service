@@ -53,6 +53,8 @@ export const Table:React.FC<{productList:Product[]}> = ({productList}) => {
       search:true,
       paging:true,
       filtering:false,
+      pageSizeOptions: [10, 20, 50],
+      pageSize: 10,
       rowStyle: {
           backgroundColor: '#EEE',
       }

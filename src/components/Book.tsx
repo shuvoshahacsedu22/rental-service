@@ -60,7 +60,7 @@ export const Book: React.FC<{
   }
   return (
     <div>
-      <IonModal
+      <IonModal 
         isOpen={showModal}
         onWillDismiss={(e) => {
           setShowModal(false);
